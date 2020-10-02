@@ -1,0 +1,29 @@
+name: Python Setup
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  set-up:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set Up Python
+        uses: actions/setup-python@v2
+        with:
+            python-version: '3.8'
+            architecture: 'x64'
+
+      # Prepares poetry
+      - name: Install Poetry
+        uses: dschep/install-poetry-action@v1.3
+
+      # Install dependencies and code checks 
+      - name: Install dependencies
+        run: |
+          poetry install
+          pylama

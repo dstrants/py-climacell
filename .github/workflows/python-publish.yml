@@ -1,0 +1,35 @@
+name: Python Setup
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set Up Python
+        uses: actions/setup-python@v2
+        with:
+            python-version: '3.8'
+            architecture: 'x64'
+
+      # Prepares poetry
+      - name: Install Poetry
+        uses: dschep/install-poetry-action@v1.3
+
+      # Install dependencies and code checks 
+      - name: Install dependencies
+        run: poetry install
+
+      - name: Bump Repo version
+        uses: hennejg/github-tag-action@v4.1.jh1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Publish package
+        run: |
+          poetry build
+          poetry publish -u __token__ -p ${{ secrets.PYPI_TOKEN }}
