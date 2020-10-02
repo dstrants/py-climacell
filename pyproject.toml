@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "py-climacell"
+name = "climacell"
 version = "0.1.0"
 description = "A simple wrapper for climacell api"
 authors = ["Dimitrios Strantsalis <dstrants@gmail.com>"]
