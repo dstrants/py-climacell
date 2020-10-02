@@ -48,8 +48,8 @@ class ClimaCellApi:
         """
         Real time observational data
 
-        :param fields: List of strings. Selected fields from the data layers
-        e.g. `humidity`
+        :param fields: List of strings. Selected fields from the data layers e.g. `humidity`
+
         """
         query = {
             "fields": fields or self.fields,
@@ -62,10 +62,11 @@ class ClimaCellApi:
             The nowcast call provides forecasting data on a minute-­by-­minute basis,
             based on ClimaCell’s proprietary sensing technology and models.
 
-            :param timestep: The interval of the forecasting data in minutes (defaults to `5min`)
+            :param timestep: The interval of the forecasting data in minutes (defaults to `5min`).
             :param start_time: The start time of the analysis.
-            :param end_time: The end time of the analysis. Max >= 360 after the `start_time`
+            :param end_time: The end time of the analysis. Max >= 360 after the `start_time`.
             :param fields: List of strings. Selected fields from the data layers e.g. `humidity`.
+
         """
         end_time = end_time or str(pendulum.parse(start_time).add(minutes=360))
         query = {
