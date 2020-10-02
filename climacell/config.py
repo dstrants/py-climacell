@@ -1,5 +1,13 @@
 from pydantic import BaseSettings, Field
 
+
+"""
+Configuration Module.
+
+It is based on pydantic and is responsible for parsing `.env` file
+and loading parameters to make classes initiation easier.
+"""
+
 # TODO: Conditionally add more fields when available.
 FIELDS = ["temp", "feels_like", "humidity", "wind_speed", "wind_direction",
           "baro_pressure", "precipitation", "sunrise", "sunset", "visibility", "weather_code"]
